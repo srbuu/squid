@@ -1,0 +1,2 @@
+# squid
+Configuração SQUID
