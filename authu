@@ -1,0 +1,9 @@
+# AUTENTICAÇÃO DE SQUID
+auth_param basic realm Acesso Restrito
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 10
+auth_param basic casesensitive off
+authenticate_ip_ttl 60 seconds
+acl password proxy_auth REQUIRED
+acl password proxy_auth "/etc/squid/passwd"
+http_access allow password
