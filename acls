@@ -1,0 +1,35 @@
+# PORTAS E ACLS
+http_port 80
+http_port 8080
+acl url1 dstdomain -i 127.0.0.1
+acl url2 dstdomain -i localhost
+
+acl SSL_ports port 443
+acl Safe_ports port 80 # http
+acl Safe_ports port 21 # ftp
+acl SSL_ports port 22
+acl Safe_ports port 443 # https
+acl Safe_ports port 22 # ssh
+acl Safe_ports port 70 # gopher
+acl Safe_ports port 210 # wais
+acl Safe_ports port 1025-65535 # unregistered ports
+acl Safe_ports port 280 # http-mgmt
+acl Safe_ports port 488 # gss-http
+acl Safe_ports port 591 # filemaker
+acl Safe_ports port 777 # multiling http
+acl Safe_ports port 901 # SWAT
+acl CONNECT method CONNECT
+acl CONNECT method POST
+acl CONNECT method OPTIONS
+acl CONNECT method HEAD
+acl CONNECT method DELETE
+acl CONNECT method PATCH
+acl CONNECT method PUT
+acl CONNECT method GET
+
+http_access deny !Safe_ports
+http_access deny !SSL_ports
+http_access deny CONNECT !SSL_ports
+http_access allow url1
+http_access allow url2
+http_access deny all
