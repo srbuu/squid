@@ -1,6 +1,8 @@
-.com.br
-.com
-.vivo
-.claro
-.tim
-.oi
+# HOST
+acl host dstdomain -i .com.br
+acl host dstdomain -i .com
+acl host dstdomain -i .vivo
+acl host dstdomain -i .claro
+acl host dstdomain -i .tim
+acl host dstdomain -i .oi
+http_access allow host
