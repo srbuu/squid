@@ -188,7 +188,7 @@ read nome
 
 echo "#IP DA MAQUINA E NOME SQUID " >> /root/tmp/ip.conf
 echo "acl ip dstdomain -i $IP" >> /root/tmp/ip.conf
-echo "http_access deny !ip" >> /root/tmp/ip.conf
+echo "http_access deny ip" >> /root/tmp/ip.conf
 echo "visible_hostname $nome" >> /root/tmp/ip.conf
 
 wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/auth 1>/dev/null 2>/dev/null 
