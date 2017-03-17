@@ -2,7 +2,7 @@
 clear
 echo ""
 
-tput setaf 2 ; tput bold ; echo "	SQUID: COM AUTENTICAÇÃO - Script By @MajinBoo " ; tput sgr0
+tput setaf 2 ; tput bold ; echo "SQUID: COM AUTENTICAÇÃO - Script By @MajinBoo" ; tput sgr0
 
 echo "$(tput bold) ESCOLHA SUA DISTRIBUIÇÃO: $(tput sgr0)"
 
