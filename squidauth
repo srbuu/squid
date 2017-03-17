@@ -166,6 +166,7 @@ sleep 2
 echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
 yum update -y 1>/dev/null 2>/dev/null 
 yum install squid -y 1>/dev/null 2>/dev/null 
+yum remove httpd -y 1>/dev/null 2>/dev/null 
 yum install httpd-tools -y 1>/dev/null 2>/dev/null 
 
 mkdir /root/tmp 1>/dev/null 2>/dev/null 
