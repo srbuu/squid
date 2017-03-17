@@ -1,6 +1,4 @@
 # PORTAS E ACLS
-http_port 80
-http_port 8080
 acl url1 dstdomain -i 127.0.0.1
 acl url2 dstdomain -i localhost
 acl SSL_ports port 443
@@ -29,6 +27,4 @@ acl CONNECT method GET
 http_access deny !Safe_ports
 http_access deny !SSL_ports
 http_access deny CONNECT !SSL_ports
-http_access deny !url1
-http_access deny !url2
 http_access deny all
