@@ -29,3 +29,6 @@ http_access deny !Safe_ports
 http_access deny !SSL_ports
 http_access deny CONNECT !SSL_ports
 http_access deny all
+#outros
+forwarded_for off
+via off
