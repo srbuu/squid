@@ -1,0 +1,549 @@
+#!/bin/sh -e
+clear
+main()
+{
+
+tput setaf 2 ; tput bold ; echo "SQUID: COM AUTENTICAÇÃO - Script By @MajinBoo" ; tput sgr0
+echo ""
+echo "$(tput bold) ESCOLHA UMA OPÇÃO: $(tput sgr0)"
+
+echo ""
+
+echo "1. Instalar Squid com Autenticação"
+
+echo "2. Gerenciamento do Squid/Squid3 Com Autenticação"
+echo ""
+echo "0. Sair do Script"
+
+echo ""
+
+echo -n "Qual a opção desejada? "
+
+read opcao
+
+case $opcao in
+1)
+#!/bin/sh -e
+clear
+principal()
+{
+echo "$(tput bold) ESCOLHA SUA DISTRIBUIÇÃO: $(tput sgr0)"
+
+echo ""
+
+echo "1. Ubuntu 14/Debian"
+
+echo "2. Ubuntu 16"
+
+echo "3. CentOs/5,6,7"
+echo ""
+echo "4. Início"
+echo ""
+echo "0. Sair do Script"
+
+echo ""
+
+echo -n "Qual a opção desejada? "
+
+read opcao
+
+case $opcao in
+
+1)
+clear
+echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
+apt-get update -y 1>/dev/null 2>/dev/null 
+apt-get install squid3 -y 1>/dev/null 2>/dev/null 
+apt-get remove apache2 -y 1>/dev/null 2>/dev/null 
+apt-get install apache2-utils -y 1>/dev/null 2>/dev/null 
+
+mkdir /root/tmp 1>/dev/null 2>/dev/null 
+
+rm -rf /etc/squid3/squid.conf 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid3/bdns 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid3/host 1>/dev/null 2>/dev/null 
+sleep 2
+echo ""
+echo ""
+echo "$(tput bold) CONFIGURANDO SQUID $(tput sgr0)" 
+
+echo "" 
+ 
+echo "Qual o nome para o Squid ?"
+read nome
+
+echo "#NOME SQUID " >> /root/tmp/ip.conf
+echo "visible_hostname $nome" >> /root/tmp/ip.conf
+
+wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/authdu 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/squid.conf raw.githubusercontent.com/srbuu/squid/master/acls 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/host raw.githubusercontent.com/srbuu/squid/master/host 1>/dev/null 2>/dev/null 
+
+cat /root/tmp/ip.conf >> /etc/squid3/squid.conf
+cat /root/tmp/auth >> /etc/squid3/squid.conf
+cat /root/tmp/squid.conf >> /etc/squid3/squid.conf
+cat /root/tmp/host >> /etc/squid3/host
+
+rm -rf /root/tmp 1>/dev/null 2>/dev/null 
+
+service squid3 start 1>/dev/null 2>/dev/null 
+
+echo "" 
+ 
+echo "Login para usar com Squid com Autenticação"
+echo "Digite o Nome do Usuário"
+read nomesquid
+
+htpasswd -c /etc/squid3/passwd $nomesquid
+
+service squid3 restart 1>/dev/null 2>/dev/null 
+service squid3 start 1>/dev/null 2>/dev/null 
+echo ""
+echo "$(tput bold) USUÁRIO E SENHA SALVO COM SUCESSO $(tput sgr0)" 
+
+sleep 2
+echo ""
+echo ""
+echo "$(tput bold) SQUID CONFIGURADO COM SUCESSO. Script By @MajinBoo $(tput sgr0)"
+
+sleep 4
+clear
+main
+;;
+
+2)
+clear
+echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
+apt-get update -y 1>/dev/null 2>/dev/null 
+apt-get install squid -y 1>/dev/null 2>/dev/null 
+apt-get remove apache2 -y 1>/dev/null 2>/dev/null 
+apt-get install apache2-utils -y 1>/dev/null 2>/dev/null 
+
+mkdir /root/tmp 1>/dev/null 2>/dev/null 
+
+rm -rf /etc/squid/squid.conf 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/bdns 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/host 1>/dev/null 2>/dev/null 
+echo ""
+echo ""
+sleep 2
+echo "$(tput bold) CONFIGURANDO SQUID $(tput sgr0)" 
+
+echo "" 
+ 
+echo "Qual o nome para o Squid ?"
+read nome
+
+echo "#NOME SQUID " >> /root/tmp/ip.conf
+echo "visible_hostname $nome" >> /root/tmp/ip.conf
+
+wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/authu 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/squid.conf raw.githubusercontent.com/srbuu/squid/master/acls 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/host raw.githubusercontent.com/srbuu/squid/master/host 1>/dev/null 2>/dev/null 
+
+cat /root/tmp/ip.conf >> /etc/squid/squid.conf
+cat /root/tmp/auth >> /etc/squid/squid.conf
+cat /root/tmp/squid.conf >> /etc/squid/squid.conf
+cat /root/tmp/host >> /etc/squid/squid.conf
+
+rm -rf /root/tmp 1>/dev/null 2>/dev/null 
+
+service squid start 1>/dev/null 2>/dev/null 
+
+echo "" 
+ 
+echo "Login para usar com Squid com Autenticação"
+echo "Digite o Nome do Usuário"
+read nomesquid
+
+htpasswd -c /etc/squid/passwd $nomesquid
+
+service squid restart 1>/dev/null 2>/dev/null 
+service squid start 1>/dev/null 2>/dev/null 
+echo ""
+echo "$(tput bold) USUÁRIO E SENHA SALVO COM SUCESSO $(tput sgr0)" 
+
+sleep 2
+echo ""
+echo ""
+echo "$(tput bold) SQUID CONFIGURADO COM SUCESSO. Script By @MajinBoo $(tput sgr0)"
+sleep 4
+clear
+main
+;;
+
+3)
+#!/bin/bash
+clear
+echo ""
+echo "$(tput bold) ESCOLHA UMA OPÇÃO: $(tput sgr0)"
+
+echo ""
+
+echo "1. CentOs 7"
+
+echo "2. CentOs 6"
+
+echo "3. CentOs 5"
+echo ""
+echo "4. Voltar Anteriormente"
+echo""
+echo "0. Sair do Script"
+
+
+echo -n "Qual a opção desejada? "
+
+read opcional
+
+case $opcional in
+
+1)
+clear
+echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
+yum update -y 1>/dev/null 2>/dev/null 
+yum install squid -y 1>/dev/null 2>/dev/null 
+yum remove httpd -y 1>/dev/null 2>/dev/null 
+yum install httpd-tools -y 1>/dev/null 2>/dev/null 
+
+mkdir /root/tmp 1>/dev/null 2>/dev/null 
+
+rm -rf /etc/squid/squid.conf 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/bdns 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/host 1>/dev/null 2>/dev/null 
+echo ""
+echo ""
+sleep 2
+echo "$(tput bold) CONFIGURANDO SQUID $(tput sgr0)" 
+
+echo "" 
+ 
+echo "Qual o nome para o Squid ?"
+read nome
+
+echo "#NOME SQUID " >> /root/tmp/ip.conf
+echo "visible_hostname $nome" >> /root/tmp/ip.conf
+
+wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/auth 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/squid.conf raw.githubusercontent.com/srbuu/squid/master/acls 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/host raw.githubusercontent.com/srbuu/squid/master/host 1>/dev/null 2>/dev/null 
+
+cat /root/tmp/ip.conf >> /etc/squid/squid.conf
+cat /root/tmp/auth >> /etc/squid/squid.conf
+cat /root/tmp/squid.conf >> /etc/squid/squid.conf
+cat /root/tmp/host >> /etc/squid/squid.conf
+
+rm -rf /root/tmp 1>/dev/null 2>/dev/null 
+
+systemctl enable squid.service 1>/dev/null 2>/dev/null 
+systemctl start squid.service 1>/dev/null 2>/dev/null 
+
+echo "" 
+ 
+echo "Login para usar com Squid com Autenticação"
+echo "Digite o Nome do Usuário"
+read nomesquid
+
+htpasswd -c /etc/squid/passwd $nomesquid
+
+systemctl restart squid.service 1>/dev/null 2>/dev/null 
+systemctl start squid.service 1>/dev/null 2>/dev/null 
+echo ""
+echo "$(tput bold) USUÁRIO E SENHA SALVO COM SUCESSO $(tput sgr0)" 
+
+sleep 2
+echo ""
+echo ""
+echo "$(tput bold) SQUID CONFIGURADO COM SUCESSO. Script By @MajinBoo $(tput sgr0)"
+sleep 4
+clear
+main
+;;
+
+2)
+clear
+echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
+yum update -y 1>/dev/null 2>/dev/null 
+yum install squid -y 1>/dev/null 2>/dev/null 
+yum remove httpd -y 1>/dev/null 2>/dev/null 
+yum install httpd-tools -y 1>/dev/null 2>/dev/null 
+
+mkdir /root/tmp 1>/dev/null 2>/dev/null 
+
+rm -rf /etc/squid/squid.conf 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/bdns 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/host 1>/dev/null 2>/dev/null 
+echo ""
+echo ""
+
+sleep 2
+echo "$(tput bold) CONFIGURANDO SQUID $(tput sgr0)" 
+
+echo "" 
+ 
+echo "Qual o nome para o Squid ?"
+read nome
+
+echo "#NOME SQUID " >> /root/tmp/ip.conf
+echo "visible_hostname $nome" >> /root/tmp/ip.conf
+
+wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/authc 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/squid.conf raw.githubusercontent.com/srbuu/squid/master/acls 1>/dev/null 2>/dev/null 
+
+cat /root/tmp/ip.conf >> /etc/squid/squid.conf
+cat /root/tmp/auth >> /etc/squid/squid.conf
+cat /root/tmp/squid.conf >> /etc/squid/squid.conf
+
+rm -rf /root/tmp 1>/dev/null 2>/dev/null 
+
+service squid start 1>/dev/null 2>/dev/null 
+
+echo "" 
+ 
+echo "Login para usar com Squid com Autenticação"
+echo "Digite o Nome do Usuário"
+read nomesquid
+
+htpasswd -c /etc/squid/passwd $nomesquid
+
+service squid restart 1>/dev/null 2>/dev/null 
+service squid start 1>/dev/null 2>/dev/null 
+echo ""
+echo "$(tput bold) USUÁRIO E SENHA SALVO COM SUCESSO $(tput sgr0)" 
+
+sleep 2
+echo ""
+echo ""
+
+echo "$(tput bold) SQUID CONFIGURADO COM SUCESSO. Script By @MajinBoo $(tput sgr0)"
+sleep 4
+clear
+main
+;;
+
+3)
+clear
+echo "$(tput bold) INSTALANDO E ATUALIZANDO PACOTES $(tput sgr0)" 
+yum update -y 1>/dev/null 2>/dev/null 
+yum install squid -y 1>/dev/null 2>/dev/null 
+yum remove httpd -y 1>/dev/null 2>/dev/null 
+yum install httpd-tools -y 1>/dev/null 2>/dev/null 
+
+mkdir /root/tmp 1>/dev/null 2>/dev/null 
+
+rm -rf /etc/squid/squid.conf 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/bdns 1>/dev/null 2>/dev/null 
+rm -rf /etc/squid/host 1>/dev/null 2>/dev/null 
+echo ""
+echo ""
+
+sleep 2
+echo "$(tput bold) CONFIGURANDO SQUID $(tput sgr0)" 
+
+echo "" 
+ 
+echo "Qual o nome para o Squid ?"
+read nome
+
+echo "#NOME SQUID " >> /root/tmp/ip.conf
+echo "visible_hostname $nome" >> /root/tmp/ip.conf
+
+wget -O /root/tmp/auth raw.githubusercontent.com/srbuu/squid/master/authcd 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/squid.conf raw.githubusercontent.com/srbuu/squid/master/acls 1>/dev/null 2>/dev/null 
+wget -O /root/tmp/host raw.githubusercontent.com/srbuu/squid/master/host 1>/dev/null 2>/dev/null 
+
+cat /root/tmp/ip.conf >> /etc/squid/squid.conf
+cat /root/tmp/auth >> /etc/squid/squid.conf
+cat /root/tmp/squid.conf >> /etc/squid/squid.conf
+cat /root/tmp/host >> /etc/squid/squid.conf
+
+rm -rf /root/tmp 1>/dev/null 2>/dev/null 
+
+service squid start 1>/dev/null 2>/dev/null 
+
+echo "" 
+ 
+echo "Login para usar com Squid com Autenticação"
+echo "Digite o Nome do Usuário"
+read nomesquid
+
+htpasswd -c /etc/squid/passwd $nomesquid
+
+service squid restart 1>/dev/null 2>/dev/null 
+service squid start 1>/dev/null 2>/dev/null 
+echo ""
+echo "$(tput bold) USUARIO E SENHA SALVO COM SUCESSO $(tput sgr0)" 
+
+sleep 2
+echo ""
+echo ""
+
+echo "$(tput bold) SQUID CONFIGURADO COM SUCESSO. Script By @MajinBoo $(tput sgr0)"
+
+sleep 4
+clear
+main
+
+;;
+4)
+clear
+principal
+;;
+0)
+clear
+echo " Saindo do script..."
+exit
+;;
+esac
+
+;;
+0)
+clear
+echo " Saindo do script..."
+exit
+;;
+4)
+clear
+main
+;;
+esac
+}
+principal
+
+;;
+
+
+2) 
+#!/bin/bash
+clear
+menu()
+{
+echo ""
+echo "$(tput bold) ESCOLHA UMA OPÇÃO: $(tput sgr0)"
+
+echo ""
+
+echo "$(tput bold) PARA DISTRIBUIÇÃO COM SQUID: $(tput sgr0)"
+echo "1. Adicionar Usuário no Squid"
+
+echo "2. Remover Usuário do Squid"
+echo ""
+echo ""
+echo "$(tput bold) PARA DISTRIBUIÇÃO COM SQUID3: $(tput sgr0)"
+echo "3. Adicionar Usuário no Squid3"
+
+echo "4. Remover Usuário do Squid3"
+echo ""
+echo "5. Início"
+
+echo ""
+echo "0. Sair do Script"
+
+echo -n "Qual a opção desejada? "
+
+read option
+
+case $option in
+
+1)
+clear
+echo "$(tput bold) ADICIONE UM NOVO USUÁRIO NO SQUID: $(tput sgr0)"
+echo ""
+
+squid="/etc/squid/passwd"
+echo -n "Digite o usuário a ser adicionado: "
+read login
+
+echo ""
+
+htpasswd $squid $login
+
+echo "$(tput bold) USUÁRIO E SENHA ADICIONADO COM SUCESSO $(tput sgr0)" 
+sleep 4
+clear
+menu
+;;
+
+2)
+clear
+echo ""
+echo "$(tput bold) DELETE UM USUÁRIO DO SQUID: $(tput sgr0)"
+echo ""
+
+squid="/etc/squid/passwd"
+echo -n "Digite o usuário a ser deletado: "
+read login
+
+echo "Mensagem do Sistema: "
+htpasswd -D $squid $login 
+
+echo "$(tput bold) USUÁRIO DELETADO COM SUCESSO $(tput sgr0)"
+sleep 4
+clear
+menu
+;;
+
+3)
+clear
+echo "$(tput bold) ADICIONE UM NOVO USUÁRIO NO SQUID3: $(tput sgr0)"
+echo ""
+
+squid="/etc/squid3/passwd"
+echo -n "Digite o usuário a ser adicionado: "
+read login
+
+echo ""
+
+htpasswd $squid $login
+
+echo "$(tput bold) USUÁRIO E SENHA ADICIONADO COM SUCESSO $(tput sgr0)" 
+
+sleep 4
+clear
+menu
+;;
+4)
+clear
+echo ""
+echo "$(tput bold) DELETE UM USUÁRIO DO SQUID3: $(tput sgr0)"
+echo ""
+
+squid="/etc/squid3/passwd"
+echo -n "Digite o usuário a ser deletado: "
+read login
+
+echo "Mensagem do Sistema: "
+htpasswd -D $squid $login 
+
+echo "$(tput bold) USUÁRIO DELETADO COM SUCESSO $(tput sgr0)"
+
+sleep 4
+clear
+menu
+
+;;
+5)
+clear
+main
+
+;;
+
+0)
+clear
+echo " Saindo do script..."
+exit
+;;
+esac
+}
+menu
+;;
+
+0)
+clear
+echo " Saindo do script..."
+
+exit
+;;
+
+esac
+}
+main
